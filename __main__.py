@@ -38,11 +38,11 @@ if __name__ == '__main__':
     # Define authorized networks for the GKE cluster's master
     master_authorized_networks = [
         {
-        "cidr_block": "14.102.43.207/32", 
+        "cidr_block": "14.142.42.202/32", 
          "display_name": "levi ip"
          },
         {
-        "cidr_block": "14.102.43.208/32", 
+        "cidr_block": "106.132.43.208/32", 
         "display_name": "office system ip"
          }
         ]
