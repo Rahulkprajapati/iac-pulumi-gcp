@@ -1,0 +1,44 @@
+image: python:latest
+
+stages:
+  - preview
+  - infra-update
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PROJECT_ID: trim-tide-381318
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+.pulumi_setup: &pulumi_setup |
+    export GOOGLE_APPLICATION_CREDENTIALS=${GCP_SA} 
+    gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+    chmod +x ./scripts/*.sh
+    ./scripts/setup.sh
+
+pulumi_preview:
+  image: google/cloud-sdk:alpine
+  stage: preview
+  before_script:
+    - *pulumi_setup
+  script:
+    - echo "Preview Pulumi Plan"
+    - ./scripts/preview-pulumi.sh
+  artifacts:
+    paths:
+    - ./archive/plan.json
+    expire_in: 60 minutes
+  
+pulumi_execute:
+  image: google/cloud-sdk:alpine
+  stage: infra-update
+  when: manual
+  before_script:
+    - *pulumi_setup
+  script:
+    - echo "Executing Pulumi Update"
+    - ./scripts/execute-pulumi.sh
+  only: [ main ]

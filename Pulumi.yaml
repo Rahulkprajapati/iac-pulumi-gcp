@@ -1,0 +1,6 @@
+name: gcp-infra-dev
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: gcp-infra-dev-envoironment
