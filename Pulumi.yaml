@@ -1,4 +1,4 @@
-name: gcp-infra-dev
+name: gcp-infra-dev #<stack name your choice>
 runtime:
   name: python
   options:
