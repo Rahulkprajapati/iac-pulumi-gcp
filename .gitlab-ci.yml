@@ -6,7 +6,7 @@ stages:
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-  PROJECT_ID: trim-tide-381318
+  PROJECT_ID: <gcp-project-id>
 
 cache:
   paths:

@@ -3,8 +3,9 @@
 
 ## Getting started
 
-1- Clone this into Gitlab repo
-2- Update CICD Variabels
-3- Update Pulumi.yaml with 
+#1- Clone this into Gitlab repo
+#2- Update CICD Variabels
+#3- Update Pulumi.yaml with 
    - name: gcp-infra-dev >> - name: <your choice>
-4- pulumi stack init <your choice>
+#4- Update PROJECT_ID -> <gcp-project-id>
+#4- pulumi stack init <your choice>
